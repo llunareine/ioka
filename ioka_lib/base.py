@@ -6,18 +6,18 @@ load_dotenv()
 
 
 class ConvertToObj:
-    def init(self, **entries):
-        self.dict.update(entries)
+    def __init__(self, **entries):
+        self.__dict__.update(entries)
 
-    def repr(self):
-        attributes = ', '.join(f"{key}={value!r}" for key, value in self.dict.items())
+    def __repr__(self):
+        attributes = ', '.join(f"{key}={value!r}" for key, value in self.__dict__.items())
         return f"{attributes}"
-    def str(self):
-        attributes = ', '.join(f"{key}: {value}" for key, value in self.dict.items())
+    def __str__(self):
+        attributes = ', '.join(f"{key}: {value}" for key, value in self.__dict__.items())
         return f"{attributes}"
 
 class Response:
-    def init(self, data):
+    def __init__(self, data):
         if isinstance(data, list):
             self.data = [ConvertToObj(**item) for item in data]
         else:
@@ -26,7 +26,7 @@ class Response:
 
 class BaseAPI:
 
-    def init(self, api_key):
+    def __init__(self, api_key):
         self.base_url = "https://stage-api.ioka.kz/v2"
         self.api_key = api_key
 
