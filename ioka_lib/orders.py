@@ -5,7 +5,7 @@ load_dotenv()
 class Orders(BaseAPI):
 
     def get_orders(self):
-        return self._send_request("GET", "orders")[1]
+        return self._send_request("GET", "orders")
 
     def get_order(self, order_id):
         return self._send_request("GET", f"orders/{order_id}")
