@@ -1,7 +1,7 @@
 from urllib.parse import urlparse
 
 from dotenv import load_dotenv
-from base import BaseAPI
+from .base import BaseAPI
 load_dotenv()
 
 class Webhooks(BaseAPI):

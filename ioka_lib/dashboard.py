@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from base import BaseAPI
+from .base import BaseAPI
 load_dotenv()
 import requests
 

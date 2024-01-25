@@ -1,11 +1,15 @@
 import requests
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
+
+
 class BaseAPI:
-    def __init__(self):
+
+    def __init__(self, api_key):
         self.base_url = os.getenv("BASE_URL")
-        self.api_key = os.getenv("API_KEY")
+        self.api_key = api_key
 
     def _send_request(self, method, endpoint, data=None):
         url = f"{self.base_url}/{endpoint}"
