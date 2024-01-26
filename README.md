@@ -8,6 +8,14 @@ This library is designed to simplify interaction with the API of the IOKA paymen
 
 💫Integration with various payment methods
 
+💫IOKA Resource Management, for example  Order, Payment, Customer, Card, Webhook
+
+💫User friendly interface
+
+💫Validation of parameters
+
+💫Transforming server responses into developer-friendly formats
+
 
 ## 📎Run Locally
 
@@ -47,14 +55,28 @@ This library is designed to simplify interaction with the API of the IOKA paymen
 import ioka_lib
 ioka = ioka_lib.IokaLib("YOUR_API_KEY")
 orders = ioka.Orders
+payments  = ioka.Payments
 
-print(orders.get_orders().data) 
+# ORDERS
 # print a list of all orders.
-print(orders.get_order("order_id")) 
-# print the details of a specific order by its ID.
-print(orders.get_orders().data[0].id) 
-# the ID of the first order in the list.
-print(orders.get_order("order_id").amount) 
-# print that order's amount
+print(orders.get_orders().data) 
 
+# print the details of a specific order by its ID.
+print(orders.get_order("order_id")) 
+
+# the ID of the first order in the list.
+print(orders.get_orders().data[0].id) 
+
+# print that order's amount
+print(orders.get_order("order_id").amount) 
+
+# PAYMENTS
+# Create a card payment
+print(payments.create_card_payment("order_id", "pan", "exp", "holder", "cvc", "save"))
+
+# Get a specific payment by its ID
+print(payments.get_payment_by_id('order_id','payment_id'))
 ```
+
+## 📎To do
+Handle all requests asynchronously
