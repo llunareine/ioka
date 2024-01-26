@@ -1,10 +1,8 @@
 import unittest
 from unittest.mock import patch
-
-import ioka_lib
 from ioka_lib.orders import Orders
 
-api_key = "your_api_key"
+api_key = "your_test_api_key"
 
 class TestCreateOrder(unittest.TestCase):
 
@@ -14,7 +12,7 @@ class TestCreateOrder(unittest.TestCase):
         orders = Orders(api_key)
         response = orders.create_order(100, "KZT", "AUTO")
         mock_send_request.assert_called_with("POST", "orders", data={"amount": 100, "currency": "KZT", "capture_method": "AUTO"})
-        self.assertEqual(response, {'status': 'success'})
+        self.assertEqual(response, mock_send_request.return_value)
 
     def test_create_order_invalid_amount(self):
         orders = Orders(api_key)
