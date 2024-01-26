@@ -49,6 +49,15 @@ This library is designed to simplify interaction with the API of the IOKA paymen
   pip install /path/to/wheelfile.whl
 ```
 
+
+## 📎Installation
+
+
+```bash
+    pip install ioka-lib
+```
+
+
 ## 📎Usage/Examples
 
 ```python
