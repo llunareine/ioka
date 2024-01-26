@@ -11,31 +11,31 @@ This library is designed to simplify interaction with the API of the IOKA paymen
 
 ## 📎Run Locally
 
-Clone the project
+🖇Clone the project
 
 ```bash
   git clone https://github.com/llunareine/ioka_library.git
 ```
 
-Go to the project directory
+🖇Go to the project directory
 
 ```bash
   cd /path/to/project
 ```
 
-Install dependencies
+🖇Install dependencies
 
 ```bash
   poetry install
 ```
 
-You need to build it locally
+🖇You need to build it locally
 
 ```bash
   python setup.py bdist_wheel
 ```
 
-Install it in the project where you will use the library
+🖇Your wheel file is stored in the “dist” folder that is now created. You can install your library by using:
 
 ```bash
   pip install /path/to/wheelfile.whl
