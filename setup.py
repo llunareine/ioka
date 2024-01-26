@@ -8,6 +8,7 @@ setup(
     packages=find_packages(),
     url='https://github.com/llunareine/ioka_library',
     description='library for ioka api',
+    long_description=open('README.md').read(),
     install_requires=[
         "requests >= 2.31.0",
         "python-dotenv >= 1.0.1"
