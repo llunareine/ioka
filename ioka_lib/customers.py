@@ -2,18 +2,11 @@ from urllib.parse import  urlencode
 import re
 from dotenv import load_dotenv
 from .base import BaseAPI
+from .payments import validate_luhn
+
 load_dotenv()
 
-def validate_luhn(pan):
-    def digits_of(n):
-        return [int(d) for d in str(n)]
-    digits = digits_of(pan)
-    odd_digits = digits[-1::-2]
-    even_digits = digits[-2::-2]
-    checksum = sum(odd_digits)
-    for d in even_digits:
-        checksum += sum(digits_of(d*2))
-    return checksum % 10 == 0
+
 class Customers(BaseAPI):
     def get_customers(self, limit=10, page=1, to_dt=None, from_dt=None):
         params = {'limit': limit, 'page': page}

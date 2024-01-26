@@ -5,8 +5,7 @@ from .base import BaseAPI
 load_dotenv()
 
 class Webhooks(BaseAPI):
-
-    VALID_EVENTS = [
+    VALID_EVENTS = {
         "ORDER_EXPIRED", "PAYMENT_DECLINED", "PAYMENT_ACTION_REQUIRED",
         "PAYMENT_APPROVED", "PAYMENT_CAPTURED", "CAPTURE_DECLINED",
         "PAYMENT_CANCELLED", "CANCEL_DECLINED", "REFUND_APPROVED",
@@ -14,13 +13,13 @@ class Webhooks(BaseAPI):
         "SPLIT_REFUND_APPROVED", "SPLIT_REFUND_DECLINED", "CHECK_APPROVED",
         "CHECK_DECLINED", "INSTALLMENT_ISSUED", "INSTALLMENT_REJECTED",
         "CARD_APPROVED", "CARD_DECLINED"
-    ]
+    }
 
     def _is_valid_url(self, url):
         try:
             result = urlparse(url)
-            return all([result.scheme, result.netloc]) and 1 <= len(url) <= 2083
-        except:
+            return result.scheme and result.netloc and 1 <= len(url) <= 2083
+        except ValueError:
             return False
 
     def _is_valid_events(self, events):
@@ -38,10 +37,7 @@ class Webhooks(BaseAPI):
         if not self._is_valid_events(events):
             raise ValueError("Invalid events provided")
 
-        webhook_data = {
-            "url": url,
-            "events": events,
-        }
+        webhook_data = {"url": url, "events": events}
         return self._send_request("POST", "webhooks", data=webhook_data)
 
     def update_webhook_by_id(self, webhook_id, events):
@@ -52,7 +48,7 @@ class Webhooks(BaseAPI):
         }
         return self._send_request("PATCH", f"webhooks/{webhook_id}", data=webhook_data)
 
-
-    def  delete_webhook_by_id(self, webhook_id):
+    def delete_webhook_by_id(self, webhook_id):
         return self._send_request("DELETE", f"webhooks/{webhook_id}")
+
 
